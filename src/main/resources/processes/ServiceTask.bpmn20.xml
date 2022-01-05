@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.activiti.org/processdef">
+  <process id="myJavaService" name="serviceTask测试" isExecutable="true">
+    <startEvent id="sid-31d56c2b-9f48-418c-a9d5-f5359c0bd4d1"/>
+    <serviceTask id="sid-d984547f-a646-462f-8f17-c2ade3394864" activiti:exclusive="true" name="ServiceTask001" activiti:class="com.fei.activitiprojectflow.servicetask.ToUpperCaseFieldInjected">
+      <extensionElements>
+        <activiti:field name="pram1">
+          <activiti:expression>${genderPojo.getGenderString(gender)}</activiti:expression>
+        </activiti:field>
+        <activiti:field name="pram2">
+          <activiti:expression>Hello ${gender == 'male' ? 'Mr.' : 'Mrs.'} ${name}</activiti:expression>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <serviceTask id="sid-ecdc0bcf-f1be-42b1-96a1-32d3ccb11ca6" name="ServiceTask002" activiti:exclusive="true" activiti:class="com.fei.activitiprojectflow.servicetask.MyDelegateExpressionBean"/>
+    <endEvent id="sid-abc705b7-9b60-41d7-a804-257d2b0cb4ed"/>
+    <sequenceFlow id="sid-8c8d3fab-2618-4645-a219-f203366aa403" sourceRef="sid-31d56c2b-9f48-418c-a9d5-f5359c0bd4d1" targetRef="sid-d984547f-a646-462f-8f17-c2ade3394864"/>
+    <sequenceFlow id="sid-d52e2229-2d90-46ce-9b12-9c3b17ffeace" sourceRef="sid-d984547f-a646-462f-8f17-c2ade3394864" targetRef="sid-ecdc0bcf-f1be-42b1-96a1-32d3ccb11ca6"/>
+    <sequenceFlow id="sid-56559ad2-109c-4151-879e-c677075a18d3" sourceRef="sid-ecdc0bcf-f1be-42b1-96a1-32d3ccb11ca6" targetRef="sid-abc705b7-9b60-41d7-a804-257d2b0cb4ed"/>
+  </process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_myJavaService">
+    <bpmndi:BPMNPlane bpmnElement="myJavaService" id="BPMNPlane_myJavaService">
+      <bpmndi:BPMNShape id="shape-34e88051-a054-4de8-8117-9b6feed46499" bpmnElement="sid-31d56c2b-9f48-418c-a9d5-f5359c0bd4d1">
+        <omgdc:Bounds x="-125.0" y="-95.0" width="30.0" height="30.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape-de5d9de2-ca6e-4822-a6f5-3c523e573200" bpmnElement="sid-d984547f-a646-462f-8f17-c2ade3394864">
+        <omgdc:Bounds x="-45.0" y="-97.5" width="65.0" height="35.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="sid-0cbb7fc5-eec1-4346-9017-816b97cd7135" bpmnElement="sid-ecdc0bcf-f1be-42b1-96a1-32d3ccb11ca6">
+        <omgdc:Bounds x="57.5" y="-97.5" width="65.0" height="35.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape-e0a2f27a-e55a-42d2-ac68-d5027f478d4a" bpmnElement="sid-abc705b7-9b60-41d7-a804-257d2b0cb4ed">
+        <omgdc:Bounds x="190.0" y="-95.0" width="30.0" height="30.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="edge-3c8fb757-7495-4cfa-9726-33be875a2ffe" bpmnElement="sid-8c8d3fab-2618-4645-a219-f203366aa403">
+        <omgdi:waypoint x="-95.0" y="-80.0"/>
+        <omgdi:waypoint x="-45.0" y="-80.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge-d83b1e6e-6de3-41c8-850b-f635978922f7" bpmnElement="sid-d52e2229-2d90-46ce-9b12-9c3b17ffeace">
+        <omgdi:waypoint x="20.0" y="-80.0"/>
+        <omgdi:waypoint x="57.5" y="-80.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge-c68c71d3-8e43-4d70-848b-71492b354bbf" bpmnElement="sid-56559ad2-109c-4151-879e-c677075a18d3">
+        <omgdi:waypoint x="122.5" y="-80.0"/>
+        <omgdi:waypoint x="190.0" y="-80.0"/>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>

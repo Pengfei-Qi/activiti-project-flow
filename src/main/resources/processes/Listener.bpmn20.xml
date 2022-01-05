@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.activiti.org/processdef">
+  <process id="myListener" name="事件监听测试" isExecutable="true">
+    <startEvent id="sid-cc93b7df-7ed9-49ab-8733-6aec0e77de9c" name="开始任务"/>
+    <userTask id="sid-3b506a43-1206-4edf-9652-d01c891785a4" name="填写报销单" activiti:assignee="${userName}">
+      <extensionElements>
+        <activiti:executionListener event="start" class="com.fei.activitiprojectflow.listener.ExecutionListenerImpl"/>
+        <activiti:executionListener event="end" class="com.fei.activitiprojectflow.listener.ExecutionListenerImpl"/>
+        <activiti:taskListener event="create" class="com.fei.activitiprojectflow.listener.AssigneeListener"/>
+        <activiti:taskListener event="assignment" class="com.fei.activitiprojectflow.listener.AssigneeListener"/>
+        <activiti:taskListener event="complete" class="com.fei.activitiprojectflow.listener.AssigneeListener"/>
+        <activiti:taskListener event="delete" class="com.fei.activitiprojectflow.listener.AssigneeListener"/>
+      </extensionElements>
+    </userTask>
+    <userTask id="sid-f851e915-5c1e-485f-a06c-93f2d995bde7" name="人事审批" activiti:assignee="rose">
+      <extensionElements>
+        <activiti:executionListener event="start" class="com.fei.activitiprojectflow.listener.ExecutionListenerImpl"/>
+        <activiti:executionListener event="end" class="com.fei.activitiprojectflow.listener.ExecutionListenerImpl"/>
+        <activiti:taskListener event="create" class="com.fei.activitiprojectflow.listener.AssigneeListener"/>
+        <activiti:taskListener event="assignment" class="com.fei.activitiprojectflow.listener.AssigneeListener"/>
+        <activiti:taskListener event="complete" class="com.fei.activitiprojectflow.listener.AssigneeListener"/>
+        <activiti:taskListener event="delete" class="com.fei.activitiprojectflow.listener.AssigneeListener"/>
+      </extensionElements>
+    </userTask>
+    <endEvent id="sid-ed495668-d905-423f-bdc1-93eaa4ccd352"/>
+    <sequenceFlow id="sid-7b1b6722-9e23-4578-ad43-f2218bb27cd9" sourceRef="sid-cc93b7df-7ed9-49ab-8733-6aec0e77de9c" targetRef="sid-3b506a43-1206-4edf-9652-d01c891785a4"/>
+    <sequenceFlow id="sid-3091c041-42b8-49b6-9239-d6445dc8a868" sourceRef="sid-3b506a43-1206-4edf-9652-d01c891785a4" targetRef="sid-f851e915-5c1e-485f-a06c-93f2d995bde7"/>
+    <sequenceFlow id="sid-4e4d20d0-2b59-46d5-bae8-ca529cb075e0" sourceRef="sid-f851e915-5c1e-485f-a06c-93f2d995bde7" targetRef="sid-ed495668-d905-423f-bdc1-93eaa4ccd352"/>
+  </process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_myListener">
+    <bpmndi:BPMNPlane bpmnElement="myListener" id="BPMNPlane_myListener">
+      <bpmndi:BPMNShape id="shape-dfc81acc-a91b-4f83-9169-87e987b0117b" bpmnElement="sid-cc93b7df-7ed9-49ab-8733-6aec0e77de9c">
+        <omgdc:Bounds x="-265.0" y="-92.5" width="30.0" height="30.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape-d2779f2f-43d5-4eef-94bd-89b7b4ced6ff" bpmnElement="sid-3b506a43-1206-4edf-9652-d01c891785a4">
+        <omgdc:Bounds x="-185.0" y="-92.5" width="55.0" height="30.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="sid-3caeb34b-945e-42c6-ad65-266bf97c3717" bpmnElement="sid-f851e915-5c1e-485f-a06c-93f2d995bde7">
+        <omgdc:Bounds x="-81.0" y="-95.0" width="60.0" height="35.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape-08ddbd0a-038c-4df5-b187-03611532bad6" bpmnElement="sid-ed495668-d905-423f-bdc1-93eaa4ccd352">
+        <omgdc:Bounds x="65.0" y="-92.5" width="30.0" height="30.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="edge-e6f3eac7-ee47-48b1-8210-33f9d0efb4ca" bpmnElement="sid-7b1b6722-9e23-4578-ad43-f2218bb27cd9">
+        <omgdi:waypoint x="-235.0" y="-77.5"/>
+        <omgdi:waypoint x="-185.0" y="-77.5"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge-84e29c18-12a9-4800-ab6a-16f55bf57e15" bpmnElement="sid-3091c041-42b8-49b6-9239-d6445dc8a868">
+        <omgdi:waypoint x="-130.0" y="-77.5"/>
+        <omgdi:waypoint x="-81.0" y="-77.5"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge-09b66042-1e5b-4feb-9cb4-718a4ab257c0" bpmnElement="sid-4e4d20d0-2b59-46d5-bae8-ca529cb075e0">
+        <omgdi:waypoint x="-21.0" y="-77.5"/>
+        <omgdi:waypoint x="65.0" y="-77.5"/>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>

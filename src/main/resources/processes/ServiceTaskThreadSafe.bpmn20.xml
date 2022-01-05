@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.activiti.org/processdef">
+  <process id="myServiceThreadSafe" name="serviceTask线程安全测试" isExecutable="true">
+    <startEvent id="sid-0cc9718d-cb41-4d8b-8bed-2654a5e4fb52"/>
+    <serviceTask id="sid-d0125aac-e46b-44b5-b15b-651a1c7cc6bf" activiti:exclusive="true" name="task001" activiti:delegateExpression="${prototypeDelegateExpressionBean}">
+      <extensionElements>
+        <activiti:field name="fieldA">
+          <activiti:expression>${input * 2}</activiti:expression>
+        </activiti:field>
+        <activiti:field name="fieldB">
+          <activiti:expression>${1 + 1}</activiti:expression>
+        </activiti:field>
+        <activiti:field name="resultVariableName">
+          <activiti:string>resultServiceTask1</activiti:string>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <serviceTask id="sid-d5829ed8-aaf4-45bb-b995-9dfc76eb7f3c" activiti:exclusive="true" name="task002" activiti:delegateExpression="${prototypeDelegateExpressionBean}">
+      <extensionElements>
+        <activiti:field name="fieldA"/>
+        <activiti:field name="fieldB">
+          <activiti:expression>${456}</activiti:expression>
+        </activiti:field>
+        <activiti:field name="fieldA">
+          <activiti:expression>${123}</activiti:expression>
+        </activiti:field>
+        <activiti:field name="resultVariableName">
+          <activiti:string>resultServiceTask2</activiti:string>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <sequenceFlow id="sid-17c64a0a-3c45-425c-8c34-e605b040733b" sourceRef="sid-d0125aac-e46b-44b5-b15b-651a1c7cc6bf" targetRef="sid-d5829ed8-aaf4-45bb-b995-9dfc76eb7f3c"/>
+    <serviceTask id="sid-e481c1ce-4db1-4ffe-9a64-2849e8d7d255" name="task003" activiti:exclusive="true" activiti:delegateExpression="${singletonDelegateExpressionBean}">
+      <extensionElements>
+        <activiti:field name="fieldA">
+          <activiti:expression>${input * 2}</activiti:expression>
+        </activiti:field>
+        <activiti:field name="fieldB">
+          <activiti:expression>${1 + 1}</activiti:expression>
+        </activiti:field>
+        <activiti:field name="resultVariableName">
+          <activiti:string>resultServiceTask1</activiti:string>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <serviceTask id="sid-7e7b15db-637f-4ecd-a809-b1df80126b73" name="task004" activiti:exclusive="true" activiti:delegateExpression="${singletonDelegateExpressionBean}">
+      <extensionElements>
+        <activiti:field name="fieldA">
+          <activiti:expression>${123}</activiti:expression>
+        </activiti:field>
+        <activiti:field name="fieldB">
+          <activiti:expression>${456}</activiti:expression>
+        </activiti:field>
+        <activiti:field name="resultVariableName">
+          <activiti:string>resultServiceTask2</activiti:string>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <endEvent id="sid-71e526ca-43c5-4467-85d2-cd0c513f860a"/>
+    <sequenceFlow id="sid-7a224fc4-0c30-4f36-9541-96c10128743a" sourceRef="sid-d5829ed8-aaf4-45bb-b995-9dfc76eb7f3c" targetRef="sid-e481c1ce-4db1-4ffe-9a64-2849e8d7d255"/>
+    <sequenceFlow id="sid-aabfe4f4-7c89-4f2b-8d7f-d07256ccdbb4" sourceRef="sid-e481c1ce-4db1-4ffe-9a64-2849e8d7d255" targetRef="sid-7e7b15db-637f-4ecd-a809-b1df80126b73"/>
+    <sequenceFlow id="sid-ec8a6201-105c-4f2e-bee7-bfbcd533f467" sourceRef="sid-7e7b15db-637f-4ecd-a809-b1df80126b73" targetRef="sid-71e526ca-43c5-4467-85d2-cd0c513f860a"/>
+    <serviceTask id="sid-f61cdb2b-bc5c-412a-a17a-9c986902c82c" name="测试结果变量: resultVariable" activiti:exclusive="true" activiti:expression="#{printerPojo.getMessage()}" activiti:resultVariable="myLetter">
+      <extensionElements/>
+    </serviceTask>
+    <sequenceFlow id="sid-d5341ee4-b06f-474d-92d6-ee9ba2ecf83a" sourceRef="sid-0cc9718d-cb41-4d8b-8bed-2654a5e4fb52" targetRef="sid-f61cdb2b-bc5c-412a-a17a-9c986902c82c"/>
+    <sequenceFlow id="sid-1e872a3d-4541-40db-b50b-cce993f02e3f" sourceRef="sid-f61cdb2b-bc5c-412a-a17a-9c986902c82c" targetRef="sid-d0125aac-e46b-44b5-b15b-651a1c7cc6bf"/>
+  </process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_myServiceThreadSafe">
+    <bpmndi:BPMNPlane bpmnElement="myServiceThreadSafe" id="BPMNPlane_myServiceThreadSafe">
+      <bpmndi:BPMNShape id="shape-50814873-9790-4995-b70a-1c5befdd89c4" bpmnElement="sid-0cc9718d-cb41-4d8b-8bed-2654a5e4fb52">
+        <omgdc:Bounds x="-275.0" y="-95.0" width="30.0" height="30.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape-9042bd93-656f-47ea-a6c4-646cb6b47e5d" bpmnElement="sid-d0125aac-e46b-44b5-b15b-651a1c7cc6bf">
+        <omgdc:Bounds x="-150.0" y="-97.5" width="65.0" height="35.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="sid-b1d4f7c1-7446-4633-bccb-655d9da351fa" bpmnElement="sid-d5829ed8-aaf4-45bb-b995-9dfc76eb7f3c">
+        <omgdc:Bounds x="-22.25" y="-97.5" width="65.0" height="35.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="edge-18331b55-f4ce-4f84-9aaf-818d0aba9b64" bpmnElement="sid-17c64a0a-3c45-425c-8c34-e605b040733b">
+        <omgdi:waypoint x="-85.0" y="-80.0"/>
+        <omgdi:waypoint x="-22.25" y="-80.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="sid-544be78e-69c8-44aa-bec8-758fe42609c4" bpmnElement="sid-e481c1ce-4db1-4ffe-9a64-2849e8d7d255">
+        <omgdc:Bounds x="91.5" y="-97.5" width="65.0" height="35.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="sid-21170a68-f0e4-422a-9b6f-003f7aa0e0d9" bpmnElement="sid-7e7b15db-637f-4ecd-a809-b1df80126b73">
+        <omgdc:Bounds x="200.0" y="-97.5" width="65.0" height="35.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape-4220f852-843f-4695-8838-ea0fce389ed5" bpmnElement="sid-71e526ca-43c5-4467-85d2-cd0c513f860a">
+        <omgdc:Bounds x="305.0" y="-95.0" width="30.0" height="30.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="edge-977b45b0-6873-4b26-af99-4b6cb612e595" bpmnElement="sid-7a224fc4-0c30-4f36-9541-96c10128743a">
+        <omgdi:waypoint x="42.75" y="-80.0"/>
+        <omgdi:waypoint x="91.5" y="-80.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge-f301cfe9-5782-417a-82db-6dde0d4c07ab" bpmnElement="sid-aabfe4f4-7c89-4f2b-8d7f-d07256ccdbb4">
+        <omgdi:waypoint x="156.5" y="-80.0"/>
+        <omgdi:waypoint x="200.0" y="-80.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge-8c06a713-3db9-46df-b492-4c2a70bf6ac0" bpmnElement="sid-ec8a6201-105c-4f2e-bee7-bfbcd533f467">
+        <omgdi:waypoint x="265.0" y="-80.0"/>
+        <omgdi:waypoint x="305.0" y="-80.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="sid-4570a55a-c11f-4dbf-97d8-0717b24249d3" bpmnElement="sid-f61cdb2b-bc5c-412a-a17a-9c986902c82c">
+        <omgdc:Bounds x="-236.93016" y="-29.695286" width="65.0" height="35.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="edge-0dd37986-db50-4654-a324-20e6d9000f87" bpmnElement="sid-d5341ee4-b06f-474d-92d6-ee9ba2ecf83a">
+        <omgdi:waypoint x="-252.5" y="-65.0"/>
+        <omgdi:waypoint x="-236.93016" y="-20.945286"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge-1ab46063-06de-42f6-a1f9-694a2cbd49c0" bpmnElement="sid-1e872a3d-4541-40db-b50b-cce993f02e3f">
+        <omgdi:waypoint x="-171.93016" y="-20.945286"/>
+        <omgdi:waypoint x="-150.0" y="-71.25"/>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>
