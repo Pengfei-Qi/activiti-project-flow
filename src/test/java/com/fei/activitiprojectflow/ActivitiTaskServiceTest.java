@@ -1,18 +1,13 @@
 package com.fei.activitiprojectflow;
 
-import com.fei.activitiprojectflow.pojo.BusinessPojo;
-import com.fei.activitiprojectflow.pojo.GenderPojo;
-import com.fei.activitiprojectflow.pojo.PrinterPojo;
+import com.fei.activitiprojectflow.demo.pojo.GenderPojo;
 import org.activiti.engine.HistoryService;
 import org.activiti.engine.RepositoryService;
 import org.activiti.engine.RuntimeService;
 import org.activiti.engine.TaskService;
-import org.activiti.engine.history.HistoricActivityInstance;
-import org.activiti.engine.history.HistoricActivityInstanceQuery;
 import org.activiti.engine.history.HistoricProcessInstanceQuery;
 import org.activiti.engine.history.HistoricTaskInstanceQuery;
 import org.activiti.engine.runtime.ProcessInstance;
-import org.activiti.engine.task.Task;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 

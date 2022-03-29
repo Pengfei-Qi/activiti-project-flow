@@ -1,6 +1,5 @@
 package com.fei.activitiprojectflow;
 
-import com.fei.activitiprojectflow.pojo.BusinessPojo;
 import org.activiti.engine.HistoryService;
 import org.activiti.engine.RepositoryService;
 import org.activiti.engine.RuntimeService;

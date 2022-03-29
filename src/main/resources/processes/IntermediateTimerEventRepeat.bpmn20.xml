@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.activiti.org/processdef">
+  <process id="repeatWithEnd" name="repeatWithEnd" isExecutable="true">
+    <startEvent id="theStart" name="theStart"/>
+    <scriptTask id="processStartedScript" name="Execute script" scriptFormat="groovy">
+      <script>System.out.println("Process started");</script>
+    </scriptTask>
+    <sequenceFlow id="sid-6b63a674-43a6-43c6-af2f-bc2530628c38" sourceRef="theStart" targetRef="processStartedScript"/>
+    <scriptTask id="task2Completed" name="Execute script" scriptFormat="groovy">
+      <script>System.out.println("Task 2 completed");</script>
+    </scriptTask>
+    <scriptTask id="timerFiredTask2" name="Execute script" scriptFormat="groovy">
+      <script>System.out.println("Intermediate Timer event 1");</script>
+    </scriptTask>
+    <endEvent id="end"/>
+    <userTask id="task1" name="Task A"/>
+    <sequenceFlow id="sid-0fb0fac2-fc00-4fd9-ad58-0fb29c6e6a5e" sourceRef="processStartedScript" targetRef="task1"/>
+    <sequenceFlow id="sid-bb1d8a5b-ee61-41b7-917d-99f9f8d06118" sourceRef="task1" targetRef="task2Completed"/>
+    <intermediateCatchEvent id="it1">
+      <timerEventDefinition>
+        <timeCycle activiti:endDate="${EndDateForCatch1}">R8/PT4M</timeCycle>
+      </timerEventDefinition>
+    </intermediateCatchEvent>
+    <sequenceFlow id="sid-07422777-6bf8-4ef7-b060-08cef12f05dc" sourceRef="it1" targetRef="timerFiredTask2"/>
+    <parallelGateway id="sid-7e7855b4-2d54-40ad-9099-76152171fb71"/>
+    <sequenceFlow id="sid-1d24a330-cc47-4dfd-b7e2-04abbd1f74ea" sourceRef="task2Completed" targetRef="sid-7e7855b4-2d54-40ad-9099-76152171fb71"/>
+    <sequenceFlow id="sid-ae9a72ed-d38d-40e8-9ef8-ea04374ba645" sourceRef="sid-7e7855b4-2d54-40ad-9099-76152171fb71" targetRef="it1">
+      <conditionExpression xsi:type="tFormalExpression"/>
+    </sequenceFlow>
+    <userTask id="task3" name="Task C"/>
+    <sequenceFlow id="sid-5710d0a1-a0d3-4c97-8d5c-e07d82078549" sourceRef="sid-7e7855b4-2d54-40ad-9099-76152171fb71" targetRef="task3">
+      <conditionExpression xsi:type="tFormalExpression"/>
+    </sequenceFlow>
+    <intermediateCatchEvent id="it2">
+      <timerEventDefinition>
+        <timeCycle>0 0/5 * * * ?</timeCycle>
+      </timerEventDefinition>
+    </intermediateCatchEvent>
+    <sequenceFlow id="sid-1ac7d830-ab6c-4165-a8d4-033075370904" sourceRef="task3" targetRef="it2"/>
+    <scriptTask id="timerFiredTask3" name="Execute script" scriptFormat="groovy">
+      <script>System.out.println("Intermediate Timer event 2 (Process ended)");</script>
+    </scriptTask>
+    <sequenceFlow id="sid-9830658c-f80d-4549-be52-0aa4dbfcec79" sourceRef="it2" targetRef="timerFiredTask3"/>
+    <sequenceFlow id="sid-8b9f6668-c65e-425b-a2c6-21d3e13ea68c" sourceRef="timerFiredTask2" targetRef="end"/>
+    <sequenceFlow id="sid-7f95a843-b636-4589-8684-d36464286cd4" sourceRef="timerFiredTask3" targetRef="end"/>
+  </process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_repeatWithEnd">
+    <bpmndi:BPMNPlane bpmnElement="repeatWithEnd" id="BPMNPlane_repeatWithEnd">
+      <bpmndi:BPMNShape id="shape-70fa9229-0536-468d-a3ad-5ca1c79cc56e" bpmnElement="theStart">
+        <omgdc:Bounds x="-180.0" y="-40.0" width="30.0" height="30.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape-1a81e0c8-ecb5-4f7b-8c7c-8ccfa5a839c4" bpmnElement="processStartedScript">
+        <omgdc:Bounds x="-125.0" y="-40.0" width="60.000004" height="30.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="edge-50e8669a-9e06-49a3-9ee6-423721b01f2f" bpmnElement="sid-6b63a674-43a6-43c6-af2f-bc2530628c38">
+        <omgdi:waypoint x="-150.0" y="-25.0"/>
+        <omgdi:waypoint x="-125.0" y="-25.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="shape-75046331-57f3-4baf-9e0d-6e64afab9efd" bpmnElement="task3">
+        <omgdc:Bounds x="-25.0" y="-40.0" width="75.0" height="30.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="sid-d7d9ae19-e75f-46ed-a3e3-6832d5a41d5d" bpmnElement="task2Completed">
+        <omgdc:Bounds x="110.0" y="-40.0" width="60.000004" height="30.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="sid-c7bdd64e-b249-466e-8551-065e9def4dae" bpmnElement="timerFiredTask2">
+        <omgdc:Bounds x="377.44788" y="-39.18833" width="60.000004" height="30.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape-3a94a56e-47d6-4daa-916c-752f93fdbc17" bpmnElement="end">
+        <omgdc:Bounds x="670.0" y="-29.188332" width="30.0" height="30.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="sid-431a73a5-bf1c-4f5b-81b6-66d0bd4824f3" bpmnElement="task1">
+        <omgdc:Bounds x="-22.428467" y="-40.000004" width="75.0" height="30.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="edge-2ef2d704-78b5-46fe-8d68-3eba7c04953a" bpmnElement="sid-0fb0fac2-fc00-4fd9-ad58-0fb29c6e6a5e">
+        <omgdi:waypoint x="-65.0" y="-25.0"/>
+        <omgdi:waypoint x="-22.428467" y="-25.000004"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge-26d02dcb-74d6-4f65-ae93-46ae376c32a2" bpmnElement="sid-bb1d8a5b-ee61-41b7-917d-99f9f8d06118">
+        <omgdi:waypoint x="52.571533" y="-25.000004"/>
+        <omgdi:waypoint x="110.0" y="-25.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="shape-56ab19ce-f34a-42a7-94fd-e57b720a8700" bpmnElement="it1">
+        <omgdc:Bounds x="295.0" y="-39.18833" width="30.0" height="30.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="edge-afc3e32c-28cb-42f5-8c88-60512e061033" bpmnElement="sid-07422777-6bf8-4ef7-b060-08cef12f05dc">
+        <omgdi:waypoint x="325.0" y="-24.188332"/>
+        <omgdi:waypoint x="377.44788" y="-24.188332"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="shape-b3b76b6c-e489-4273-a741-48d2bb35ae41" bpmnElement="sid-7e7855b4-2d54-40ad-9099-76152171fb71">
+        <omgdc:Bounds x="215.0" y="-44.18833" width="40.0" height="40.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="edge-bda70d44-f326-41d6-aee7-668ec286505e" bpmnElement="sid-1d24a330-cc47-4dfd-b7e2-04abbd1f74ea">
+        <omgdi:waypoint x="170.0" y="-25.0"/>
+        <omgdi:waypoint x="215.0" y="-24.188332"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge-e2fd1160-80f4-48b2-90a3-76253eb13d9e" bpmnElement="sid-ae9a72ed-d38d-40e8-9ef8-ea04374ba645">
+        <omgdi:waypoint x="255.0" y="-24.188332"/>
+        <omgdi:waypoint x="295.0" y="-24.188332"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="shape-1ab800b1-787c-43f7-8e4c-9cd5285feb61" bpmnElement="task3">
+        <omgdc:Bounds x="195.0" y="55.0" width="80.0" height="35.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="edge-b7e613de-d135-4e68-b20b-93fa37343284" bpmnElement="sid-5710d0a1-a0d3-4c97-8d5c-e07d82078549">
+        <omgdi:waypoint x="235.0" y="-4.1883316"/>
+        <omgdi:waypoint x="235.0" y="55.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="shape-633e77ab-44e1-4d61-8f77-7f8072a1caff" bpmnElement="it2">
+        <omgdc:Bounds x="330.0" y="57.5" width="30.0" height="30.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="edge-e9d6a426-cd54-4e1a-b8a0-c87b2f00842b" bpmnElement="sid-1ac7d830-ab6c-4165-a8d4-033075370904">
+        <omgdi:waypoint x="275.0" y="72.5"/>
+        <omgdi:waypoint x="330.0" y="72.5"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="shape-0d93ad5f-8c42-44a8-b12f-e68c480d0cc6" bpmnElement="timerFiredTask3">
+        <omgdc:Bounds x="420.0" y="52.5" width="100.0" height="40.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="edge-4994cd52-4bd2-4db1-a5d3-ac2d7f5688c1" bpmnElement="sid-9830658c-f80d-4549-be52-0aa4dbfcec79">
+        <omgdi:waypoint x="360.0" y="72.5"/>
+        <omgdi:waypoint x="420.0" y="72.5"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge-1c1a807f-d122-451d-823c-e576bda8ffab" bpmnElement="sid-8b9f6668-c65e-425b-a2c6-21d3e13ea68c">
+        <omgdi:waypoint x="437.44788" y="-24.188332"/>
+        <omgdi:waypoint x="670.0" y="-21.688332"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge-25c4205b-b36f-4d99-ad03-e864b62efcfa" bpmnElement="sid-7f95a843-b636-4589-8684-d36464286cd4">
+        <omgdi:waypoint x="520.0" y="62.5"/>
+        <omgdi:waypoint x="670.0" y="-6.6883316"/>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>

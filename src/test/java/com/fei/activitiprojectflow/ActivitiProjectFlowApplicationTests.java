@@ -1,5 +1,7 @@
 package com.fei.activitiprojectflow;
 
+import com.fei.activitiprojectflow.vo.TimerEnum;
+import com.fei.activitiprojectflow.vo.TimerEnum_Second;
 import org.activiti.engine.HistoryService;
 import org.activiti.engine.RepositoryService;
 import org.activiti.engine.RuntimeService;
@@ -205,6 +207,15 @@ public class ActivitiProjectFlowApplicationTests {
             System.out.println(hi.getProcessDefinitionId());
             System.out.println(hi.getProcessInstanceId());
             System.out.println("<==========================>");
+        }
+    }
+
+    @Test
+    public void testEnum() {
+        TimerEnum_Second enum_second = TimerEnum_Second.TIMER_CYCLE;
+        System.out.println(enum_second.englishWord);
+        if ("timeCycle".equalsIgnoreCase(enum_second.englishWord)){
+            System.out.println("相等");
         }
     }
 }

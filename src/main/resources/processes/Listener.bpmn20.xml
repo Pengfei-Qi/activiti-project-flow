@@ -4,22 +4,22 @@
     <startEvent id="sid-cc93b7df-7ed9-49ab-8733-6aec0e77de9c" name="开始任务"/>
     <userTask id="sid-3b506a43-1206-4edf-9652-d01c891785a4" name="填写报销单" activiti:assignee="${userName}">
       <extensionElements>
-        <activiti:executionListener event="start" class="com.fei.activitiprojectflow.listener.ExecutionListenerImpl"/>
-        <activiti:executionListener event="end" class="com.fei.activitiprojectflow.listener.ExecutionListenerImpl"/>
-        <activiti:taskListener event="create" class="com.fei.activitiprojectflow.listener.AssigneeListener"/>
-        <activiti:taskListener event="assignment" class="com.fei.activitiprojectflow.listener.AssigneeListener"/>
-        <activiti:taskListener event="complete" class="com.fei.activitiprojectflow.listener.AssigneeListener"/>
-        <activiti:taskListener event="delete" class="com.fei.activitiprojectflow.listener.AssigneeListener"/>
+        <activiti:executionListener event="start" class="com.fei.activitiprojectflow.demo.listener.ExecutionListenerImpl" />
+        <activiti:executionListener event="end" class="com.fei.activitiprojectflow.demo.listener.ExecutionListenerImpl"/>
+        <activiti:taskListener event="create" class="com.fei.activitiprojectflow.demo.listener.AssigneeListener"/>
+        <activiti:taskListener event="assignment" class="com.fei.activitiprojectflow.demo.listener.AssigneeListener"/>
+        <activiti:taskListener event="complete" class="com.fei.activitiprojectflow.demo.listener.AssigneeListener"/>
+        <activiti:taskListener event="delete" class="com.fei.activitiprojectflow.demo.listener.AssigneeListener"/>
       </extensionElements>
     </userTask>
     <userTask id="sid-f851e915-5c1e-485f-a06c-93f2d995bde7" name="人事审批" activiti:assignee="rose">
       <extensionElements>
-        <activiti:executionListener event="start" class="com.fei.activitiprojectflow.listener.ExecutionListenerImpl"/>
-        <activiti:executionListener event="end" class="com.fei.activitiprojectflow.listener.ExecutionListenerImpl"/>
-        <activiti:taskListener event="create" class="com.fei.activitiprojectflow.listener.AssigneeListener"/>
-        <activiti:taskListener event="assignment" class="com.fei.activitiprojectflow.listener.AssigneeListener"/>
-        <activiti:taskListener event="complete" class="com.fei.activitiprojectflow.listener.AssigneeListener"/>
-        <activiti:taskListener event="delete" class="com.fei.activitiprojectflow.listener.AssigneeListener"/>
+        <activiti:executionListener event="start" class="com.fei.activitiprojectflow.demo.listener.ExecutionListenerImpl"/>
+        <activiti:executionListener event="end" class="com.fei.activitiprojectflow.demo.listener.ExecutionListenerImpl"/>
+        <activiti:taskListener event="create" class="com.fei.activitiprojectflow.demo.listener.AssigneeListener"/>
+        <activiti:taskListener event="assignment" class="com.fei.activitiprojectflow.demo.listener.AssigneeListener"/>
+        <activiti:taskListener event="complete" class="com.fei.activitiprojectflow.demo.listener.AssigneeListener"/>
+        <activiti:taskListener event="delete" class="com.fei.activitiprojectflow.demo.listener.AssigneeListener"/>
       </extensionElements>
     </userTask>
     <endEvent id="sid-ed495668-d905-423f-bdc1-93eaa4ccd352"/>
@@ -36,7 +36,7 @@
         <omgdc:Bounds x="-185.0" y="-92.5" width="55.0" height="30.0"/>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="sid-3caeb34b-945e-42c6-ad65-266bf97c3717" bpmnElement="sid-f851e915-5c1e-485f-a06c-93f2d995bde7">
-        <omgdc:Bounds x="-81.0" y="-95.0" width="60.0" height="35.0"/>
+        <omgdc:Bounds x="-81.0" y="-95.00001" width="60.0" height="35.0"/>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="shape-08ddbd0a-038c-4df5-b187-03611532bad6" bpmnElement="sid-ed495668-d905-423f-bdc1-93eaa4ccd352">
         <omgdc:Bounds x="65.0" y="-92.5" width="30.0" height="30.0"/>
@@ -47,10 +47,10 @@
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="edge-84e29c18-12a9-4800-ab6a-16f55bf57e15" bpmnElement="sid-3091c041-42b8-49b6-9239-d6445dc8a868">
         <omgdi:waypoint x="-130.0" y="-77.5"/>
-        <omgdi:waypoint x="-81.0" y="-77.5"/>
+        <omgdi:waypoint x="-81.0" y="-77.50001"/>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="edge-09b66042-1e5b-4feb-9cb4-718a4ab257c0" bpmnElement="sid-4e4d20d0-2b59-46d5-bae8-ca529cb075e0">
-        <omgdi:waypoint x="-21.0" y="-77.5"/>
+        <omgdi:waypoint x="-21.0" y="-77.50001"/>
         <omgdi:waypoint x="65.0" y="-77.5"/>
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>

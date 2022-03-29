@@ -1,6 +1,6 @@
 package com.fei.activitiprojectflow;
 
-import com.fei.activitiprojectflow.pojo.BusinessPojo;
+import com.fei.activitiprojectflow.demo.pojo.BusinessPojo;
 import org.activiti.engine.HistoryService;
 import org.activiti.engine.RepositoryService;
 import org.activiti.engine.RuntimeService;
@@ -69,7 +69,7 @@ public class ActivitiVariablesTest extends ActivitiProjectFlowApplicationTests{
      */
     @Test
     public void findInstance() {
-        String key = "myLeave2";
+        String key = "roadTimer";
         List<ProcessInstance> list = runtimeService.createProcessInstanceQuery().processDefinitionKey(key).list();
         for (ProcessInstance processInstance : list) {
             System.out.println("===========================");

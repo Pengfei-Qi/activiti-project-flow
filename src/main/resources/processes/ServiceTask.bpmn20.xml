@@ -2,7 +2,7 @@
 <definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.activiti.org/processdef">
   <process id="myJavaService" name="serviceTask测试" isExecutable="true">
     <startEvent id="sid-31d56c2b-9f48-418c-a9d5-f5359c0bd4d1"/>
-    <serviceTask id="sid-d984547f-a646-462f-8f17-c2ade3394864" activiti:exclusive="true" name="ServiceTask001" activiti:class="com.fei.activitiprojectflow.servicetask.ToUpperCaseFieldInjected">
+    <serviceTask id="sid-d984547f-a646-462f-8f17-c2ade3394864" activiti:exclusive="true" name="ServiceTask001" activiti:class="com.fei.activitiprojectflow.demo.servicetask.ToUpperCaseFieldInjected">
       <extensionElements>
         <activiti:field name="pram1">
           <activiti:expression>${genderPojo.getGenderString(gender)}</activiti:expression>
@@ -12,7 +12,7 @@
         </activiti:field>
       </extensionElements>
     </serviceTask>
-    <serviceTask id="sid-ecdc0bcf-f1be-42b1-96a1-32d3ccb11ca6" name="ServiceTask002" activiti:exclusive="true" activiti:class="com.fei.activitiprojectflow.servicetask.MyDelegateExpressionBean"/>
+    <serviceTask id="sid-ecdc0bcf-f1be-42b1-96a1-32d3ccb11ca6" name="ServiceTask002" activiti:exclusive="true" activiti:class="com.fei.activitiprojectflow.demo.servicetask.MyDelegateExpressionBean"/>
     <endEvent id="sid-abc705b7-9b60-41d7-a804-257d2b0cb4ed"/>
     <sequenceFlow id="sid-8c8d3fab-2618-4645-a219-f203366aa403" sourceRef="sid-31d56c2b-9f48-418c-a9d5-f5359c0bd4d1" targetRef="sid-d984547f-a646-462f-8f17-c2ade3394864"/>
     <sequenceFlow id="sid-d52e2229-2d90-46ce-9b12-9c3b17ffeace" sourceRef="sid-d984547f-a646-462f-8f17-c2ade3394864" targetRef="sid-ecdc0bcf-f1be-42b1-96a1-32d3ccb11ca6"/>

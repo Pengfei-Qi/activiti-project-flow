@@ -1,7 +1,6 @@
 package com.fei.activitiprojectflow;
 
-import com.fei.activitiprojectflow.pojo.GenderPojo;
-import com.fei.activitiprojectflow.pojo.PrinterPojo;
+import com.fei.activitiprojectflow.demo.pojo.PrinterPojo;
 import org.activiti.engine.HistoryService;
 import org.activiti.engine.RepositoryService;
 import org.activiti.engine.RuntimeService;
