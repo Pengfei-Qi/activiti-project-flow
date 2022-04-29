@@ -1,6 +1,6 @@
 package com.fei.activitiprojectflow;
 
-import com.fei.activitiprojectflow.demo.pojo.BusinessPojo;
+import com.fei.activitiprojectflow.pojo.BusinessPojo;
 import org.activiti.engine.HistoryService;
 import org.activiti.engine.RepositoryService;
 import org.activiti.engine.RuntimeService;
@@ -27,11 +27,6 @@ public class ActivitiExclusiveGatewayTest extends ActivitiProjectFlowApplication
     @Autowired
     private TaskService taskService;
 
-    @Autowired
-    private RepositoryService repositoryService;
-    @Autowired
-    private HistoryService historyService;
-
    final String processDefinitionKey1 =  "myExclusive" ;
 
     /**
@@ -41,7 +36,6 @@ public class ActivitiExclusiveGatewayTest extends ActivitiProjectFlowApplication
     public void testStartProcess() {
         ProcessInstance processInstance = runtimeService
                 .startProcessInstanceByKey(processDefinitionKey1);
-        //输出内容
         System.out.println("流程定义id：" + processInstance.getProcessDefinitionId());
         System.out.println("流程实例id：" + processInstance.getId());
         System.out.println("当前活动Id：" + processInstance.getActivityId());

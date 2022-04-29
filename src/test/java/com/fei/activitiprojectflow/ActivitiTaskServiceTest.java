@@ -1,10 +1,9 @@
 package com.fei.activitiprojectflow;
 
-import com.fei.activitiprojectflow.demo.pojo.GenderPojo;
+
+import com.fei.activitiprojectflow.pojo.GenderPojo;
 import org.activiti.engine.HistoryService;
-import org.activiti.engine.RepositoryService;
 import org.activiti.engine.RuntimeService;
-import org.activiti.engine.TaskService;
 import org.activiti.engine.history.HistoricProcessInstanceQuery;
 import org.activiti.engine.history.HistoricTaskInstanceQuery;
 import org.activiti.engine.runtime.ProcessInstance;
@@ -26,11 +25,6 @@ public class ActivitiTaskServiceTest extends ActivitiProjectFlowApplicationTests
     @Autowired
     private RuntimeService runtimeService;
 
-    @Autowired
-    private TaskService taskService;
-
-    @Autowired
-    private RepositoryService repositoryService;
     @Autowired
     private HistoryService historyService;
 

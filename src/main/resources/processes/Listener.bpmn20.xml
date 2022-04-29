@@ -4,22 +4,22 @@
     <startEvent id="sid-cc93b7df-7ed9-49ab-8733-6aec0e77de9c" name="开始任务"/>
     <userTask id="sid-3b506a43-1206-4edf-9652-d01c891785a4" name="填写报销单" activiti:assignee="${userName}">
       <extensionElements>
-        <activiti:executionListener event="start" class="com.fei.activitiprojectflow.demo.listener.ExecutionListenerImpl" />
-        <activiti:executionListener event="end" class="com.fei.activitiprojectflow.demo.listener.ExecutionListenerImpl"/>
-        <activiti:taskListener event="create" class="com.fei.activitiprojectflow.demo.listener.AssigneeListener"/>
-        <activiti:taskListener event="assignment" class="com.fei.activitiprojectflow.demo.listener.AssigneeListener"/>
-        <activiti:taskListener event="complete" class="com.fei.activitiprojectflow.demo.listener.AssigneeListener"/>
-        <activiti:taskListener event="delete" class="com.fei.activitiprojectflow.demo.listener.AssigneeListener"/>
+        <activiti:executionListener event="start" class="com.fei.activitiprojectflow.listener.ExecutionListenerImpl" />
+        <activiti:executionListener event="end" class="com.fei.activitiprojectflow.listener.ExecutionListenerImpl"/>
+        <activiti:taskListener event="create" class="com.fei.activitiprojectflow.listener.AssigneeListener"/>
+        <activiti:taskListener event="assignment" class="com.fei.activitiprojectflow.listener.AssigneeListener"/>
+        <activiti:taskListener event="complete" class="com.fei.activitiprojectflow.listener.AssigneeListener"/>
+        <activiti:taskListener event="delete" class="com.fei.activitiprojectflow.listener.AssigneeListener"/>
       </extensionElements>
     </userTask>
     <userTask id="sid-f851e915-5c1e-485f-a06c-93f2d995bde7" name="人事审批" activiti:assignee="rose">
       <extensionElements>
-        <activiti:executionListener event="start" class="com.fei.activitiprojectflow.demo.listener.ExecutionListenerImpl"/>
-        <activiti:executionListener event="end" class="com.fei.activitiprojectflow.demo.listener.ExecutionListenerImpl"/>
-        <activiti:taskListener event="create" class="com.fei.activitiprojectflow.demo.listener.AssigneeListener"/>
-        <activiti:taskListener event="assignment" class="com.fei.activitiprojectflow.demo.listener.AssigneeListener"/>
-        <activiti:taskListener event="complete" class="com.fei.activitiprojectflow.demo.listener.AssigneeListener"/>
-        <activiti:taskListener event="delete" class="com.fei.activitiprojectflow.demo.listener.AssigneeListener"/>
+        <activiti:executionListener event="start" class="com.fei.activitiprojectflow.listener.ExecutionListenerImpl"/>
+        <activiti:executionListener event="end" class="com.fei.activitiprojectflow.listener.ExecutionListenerImpl"/>
+        <activiti:taskListener event="create" class="com.fei.activitiprojectflow.listener.AssigneeListener"/>
+        <activiti:taskListener event="assignment" class="com.fei.activitiprojectflow.listener.AssigneeListener"/>
+        <activiti:taskListener event="complete" class="com.fei.activitiprojectflow.listener.AssigneeListener"/>
+        <activiti:taskListener event="delete" class="com.fei.activitiprojectflow.listener.AssigneeListener"/>
       </extensionElements>
     </userTask>
     <endEvent id="sid-ed495668-d905-423f-bdc1-93eaa4ccd352"/>
