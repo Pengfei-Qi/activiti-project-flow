@@ -1,8 +1,5 @@
 package com.fei.activitiprojectflow;
 
-import com.fei.activitiprojectflow.demo.pojo.BusinessPojo;
-import org.activiti.engine.HistoryService;
-import org.activiti.engine.RepositoryService;
 import org.activiti.engine.RuntimeService;
 import org.activiti.engine.TaskService;
 import org.activiti.engine.runtime.ProcessInstance;
@@ -21,23 +18,12 @@ import java.util.Map;
  * @version: 1.0
  */
 public class ActivitiVariablesTest extends ActivitiProjectFlowApplicationTests{
-    //
-//    @Autowired
-//    private ProcessRuntime processRuntime;
-//
-//    @Autowired
-//    private TaskRuntime taskRuntime;
 
     @Autowired
     private RuntimeService runtimeService;
 
     @Autowired
     private TaskService taskService;
-
-    @Autowired
-    private RepositoryService repositoryService;
-    @Autowired
-    private HistoryService historyService;
 
     /**
      * 启动流程实例
@@ -51,10 +37,6 @@ public class ActivitiVariablesTest extends ActivitiProjectFlowApplicationTests{
         variables.put("assignee3","刘备2");
         variables.put("assignee4","张飞2");
         variables.put("assignee5","关羽2");
-
-        BusinessPojo businessPojo = new BusinessPojo();
-        businessPojo.setNum(1d);
-        variables.put("businesspojo",businessPojo);
 
         ProcessInstance processInstance = runtimeService
                 .startProcessInstanceByKey("myLeave2",variables);
@@ -99,13 +81,11 @@ public class ActivitiVariablesTest extends ActivitiProjectFlowApplicationTests{
         }
         List<Task> list = taskService.createTaskQuery().processDefinitionKey(definitionKey).orderByTaskCreateTime().desc().list();
         list.forEach((e) -> {
-            BusinessPojo businesspojo = (BusinessPojo) taskService.getVariable(e.getId(), "businesspojo");
             System.out.println("================================");
             System.out.println("下一个节点信息:    " + e.getAssignee());
             System.out.println("实例ID:  " + e.getProcessInstanceId());
             System.out.println("taskId:     "+e.getId());
             System.out.println("assignee3   "+taskService.getVariable(e.getId(), "assignee3"));
-            System.out.println("num:    "+ businesspojo.getNum());
         });
     }
 
@@ -117,21 +97,5 @@ public class ActivitiVariablesTest extends ActivitiProjectFlowApplicationTests{
         String taskId = "b7195f59-67d9-11ec-a21a-00ff047fdcf5";
         taskService.setVariable(taskId,"assignee3","王五3333");
         System.out.println("assignee3         "+taskService.getVariable(taskId, "assignee3"));
-    }
-
-    /**
-     * 测试全局变量
-     */
-    @Test
-    public void globalVarTest() {
-        String definitionKey = "myLeave2";
-        String taskId = "aafd8caa-67d9-11ec-b95e-00ff047fdcf5";
-        BusinessPojo businessPojo = new BusinessPojo();
-        businessPojo.setNum(5d);
-        // taskService.setVariable(taskId,"businesspojo",businessPojo);
-
-        taskService.setVariableLocal(taskId,"assignee3","刘备");
-
-
     }
 }

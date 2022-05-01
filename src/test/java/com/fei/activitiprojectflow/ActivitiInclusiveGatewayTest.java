@@ -1,6 +1,6 @@
 package com.fei.activitiprojectflow;
 
-import com.fei.activitiprojectflow.demo.pojo.BusinessPojo;
+import com.fei.activitiprojectflow.pojo.BusinessPojo;
 import org.activiti.engine.HistoryService;
 import org.activiti.engine.RepositoryService;
 import org.activiti.engine.RuntimeService;
@@ -29,8 +29,6 @@ public class ActivitiInclusiveGatewayTest extends ActivitiProjectFlowApplication
     @Autowired
     private TaskService taskService;
 
-    @Autowired
-    private RepositoryService repositoryService;
     @Autowired
     private HistoryService historyService;
 
@@ -98,7 +96,6 @@ public class ActivitiInclusiveGatewayTest extends ActivitiProjectFlowApplication
     public void queryHistoryInfo() {
         String instanceId = "2e493d6e-67eb-11ec-a217-00ff047fdcf5";
         HistoricActivityInstanceQuery historicActivityInstanceQuery = historyService.createHistoricActivityInstanceQuery().processInstanceId(instanceId);
-        //按照流程创建时间排序
         historicActivityInstanceQuery.orderByHistoricActivityInstanceStartTime().asc();
         List<HistoricActivityInstance> list = historicActivityInstanceQuery.list();
         list.forEach(e -> {

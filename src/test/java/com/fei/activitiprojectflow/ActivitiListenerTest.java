@@ -1,7 +1,6 @@
 package com.fei.activitiprojectflow;
 
 import org.activiti.engine.HistoryService;
-import org.activiti.engine.RepositoryService;
 import org.activiti.engine.RuntimeService;
 import org.activiti.engine.TaskService;
 import org.activiti.engine.history.HistoricActivityInstance;
@@ -27,9 +26,6 @@ public class ActivitiListenerTest extends ActivitiProjectFlowApplicationTests{
 
     @Autowired
     private TaskService taskService;
-
-    @Autowired
-    private RepositoryService repositoryService;
     @Autowired
     private HistoryService historyService;
 
