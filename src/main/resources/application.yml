@@ -1,6 +1,6 @@
 customize:
     mysql:
-        url: 192.168.235.233:3306
+        url: localhost:8006
         username: root
         password: 123456
 
@@ -29,7 +29,7 @@ spring:
         #2.true： activiti会对数据库中所有表进行更新操作。如果表不存在，则自动创建
         #3.create_drop： 在activiti启动时创建表，在关闭时删除表（必须手动关闭引擎，才能删除表）
         #4.drop-create： 在activiti启动时删除原来的旧表，然后在创建新表（不需要手动关闭引擎）
-        database-schema-update: drop-create
+        database-schema-update: true
         #activiti7默认不生成历史信息表，开启历史表
         db-history-used: true
         #记录历史等级 可配置的历史级别有none, activity, audit, full

@@ -3,7 +3,6 @@ package com.fei.activitiprojectflow.demo.listener;
 import lombok.extern.slf4j.Slf4j;
 import org.activiti.engine.delegate.event.ActivitiEvent;
 import org.activiti.engine.delegate.event.ActivitiEventListener;
-import org.activiti.engine.delegate.event.ActivitiEventType;
 import org.springframework.stereotype.Component;
 
 /**
@@ -40,6 +39,14 @@ public class ActivitiEventListenerImpl implements ActivitiEventListener {
             // case ACTIVITY_STARTED:
             //     System.out.println("ACTIVITY_STARTED event");
             //     break;
+            case PROCESS_COMPLETED:
+                System.out.println("PROCESS_COMPLETED event");
+                break;
+            case PROCESS_STARTED:
+                System.out.println("PROCESS_STARTED event");
+                System.out.println("instanceId: "+event.getProcessInstanceId());
+                System.out.println("processDefinitionId: "+event.getProcessDefinitionId());
+                break;
         }
         // ActivitiEventType eventType = event.getType();
         // String name = eventType.name();
